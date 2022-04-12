@@ -4,6 +4,7 @@ import Head from "next/head";
 import axios from "axios";
 import styles from "../../styles/Details.module.css";
 
+
 export const getServerSideProps = async ({params}) => {
   const resp = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`
@@ -16,13 +17,13 @@ export const getServerSideProps = async ({params}) => {
 };
 export default function Details({pokemon}) {
   return (
-    <div >
+    <div  className={styles.pokemonDetails}>
       <Head>
         <title>{pokemon?.name}</title>
       </Head>
       <div>
         <Link href="/">
-          <a>back to home</a>
+          <a>Back to Home</a>
         </Link>
       </div>
       <div className={styles.layout}>
