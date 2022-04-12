@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
 import styles from "../../styles/Details.module.css";
@@ -10,7 +8,6 @@ export const getServerSideProps = async ({params}) => {
   const resp = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`
   );
-  console.log(resp,"getid");
   return {
     props: {
       pokemon:await resp.data
@@ -19,7 +16,7 @@ export const getServerSideProps = async ({params}) => {
 };
 export default function Details({pokemon}) {
   return (
-    <div>
+    <div >
       <Head>
         <title>{pokemon?.name}</title>
       </Head>
@@ -38,7 +35,7 @@ export default function Details({pokemon}) {
         </div>
         <div>
           <div className={styles.name}>{pokemon?.name}</div>
-          {/* <div className={styles.type}>{pokemon?.type}</div> */}
+          <div className={styles.type}>{pokemon?.type.join(",")}</div>
           <table>
             <thead className={styles.header}>
               <tr>
