@@ -1,23 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
 import styles from "../../styles/Details.module.css";
 
-export const getServerSideProps = async ({params}) => {
+export const getServerSideProps = async ({ params }) => {
   const resp = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`
   );
-  console.log(resp,"getid");
+
   return {
     props: {
-      pokemon:await resp.data
-    }
-  }
+      pokemon: await resp.data,
+    },
+  };
 };
-export default function Details({pokemon}) {
+export default function Details({ pokemon }) {
   return (
     <div>
       <Head>
