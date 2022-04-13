@@ -1,9 +1,7 @@
 .layout {
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 1fr 5fr;
   column-gap: 1rem;
-  align-items: center;
-  margin: 100px;
 }
 .name {
   font-weight: bold;
@@ -23,14 +21,4 @@
 }
 .picture {
   max-height: 400px;
-}
-.pokemonDetails {
-  align-items: center;
-  height: 100vh;
-}
-.backToHomeLink {
-  margin: 7px 0px 0px 4px;
-  border: 1px solid;
-  background-color: lightgray;
-  width: fit-content;
 }

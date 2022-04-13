@@ -28,11 +28,11 @@ export const getStaticProps = async ({ params }) => {
 };
 export default function Details({ pokemon }) {
   return (
-    <div className={styles.pokemonDetails}>
+    <div>
       <Head>
         <title>{pokemon?.name}</title>
       </Head>
-      <div className={styles.backToHomeLink}>
+      <div >
         <Link href="/">
           <a>Back to Home</a>
         </Link>
