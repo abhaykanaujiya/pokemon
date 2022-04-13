@@ -2,24 +2,18 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
-
-
 export const getServerSideProps = async () => {
   const res = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json`
   );
   const items = await res.data;
-
   return {
     props: {
       pokemon: items,
     },
   };
 };
-export default function Home({pokemon}) {
-
-
-
+export default function Home({ pokemon }) {
   return (
     <div className={styles.container}>
       <Head>

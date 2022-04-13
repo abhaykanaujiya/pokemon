@@ -3,12 +3,10 @@ import Link from "next/link";
 import Head from "next/head";
 import axios from "axios";
 import styles from "../../styles/Details.module.css";
-
 export const getServerSideProps = async ({ params }) => {
   const resp = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`
   );
-
   return {
     props: {
       pokemon: await resp.data,
