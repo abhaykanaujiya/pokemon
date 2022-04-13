@@ -4,8 +4,19 @@ import Head from "next/head";
 import axios from "axios";
 import styles from "../../styles/Details.module.css";
 
-
-export const getServerSideProps = async ({params}) => {
+export const getStaticPaths =async () => {
+   const res = await axios.get(
+    `https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json`
+  );
+  const pokemon = await res.data;
+  return {
+    paths: pokemon.map((pokemon) => ({
+      params: { id: pokemon.id.toString() }
+    })),
+    fallback:false,
+  }
+}
+export const getStaticProps = async ({ params }) => {
   const resp = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`
   );
