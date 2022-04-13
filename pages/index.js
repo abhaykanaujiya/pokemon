@@ -3,8 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
-
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const res = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json`
   );
@@ -15,10 +14,7 @@ export const getServerSideProps = async () => {
     },
   };
 };
-export default function Home({pokemon}) {
-
-
-
+export default function Home({ pokemon }) {
   return (
     <div className={styles.container}>
       <Head>

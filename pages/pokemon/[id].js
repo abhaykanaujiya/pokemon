@@ -4,24 +4,35 @@ import Head from "next/head";
 import axios from "axios";
 import styles from "../../styles/Details.module.css";
 
-
-export const getServerSideProps = async ({params}) => {
+export const getStaticPaths = async () => {
+  const resp = await axios.get(
+    `https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json`
+  );
+  const pokemon = await resp.data;
+  return {
+    paths: pokemon?.map((pokemon) => ({
+      params: { id: pokemon.id.toString() },
+    })),
+    fallback: false,
+  };
+};
+export const getStaticProps = async ({ params }) => {
   const resp = await axios.get(
     `https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`
   );
   return {
     props: {
-      pokemon:await resp.data
-    }
-  }
+      pokemon: await resp.data,
+    },
+  };
 };
-export default function Details({pokemon}) {
+export default function Details({ pokemon }) {
   return (
-    <div  className={styles.pokemonDetails}>
+    <div className={styles.pokemonDetails}>
       <Head>
         <title>{pokemon?.name}</title>
       </Head>
-      <div>
+      <div className={styles.backToHomeLink}>
         <Link href="/">
           <a>Back to Home</a>
         </Link>
