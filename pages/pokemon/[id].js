@@ -28,7 +28,7 @@ export const getStaticProps = async ({ params }) => {
 };
 export default function Details({ pokemon }) {
   return (
-    <div className={styles.pokemonDetails}>
+    <div>
       <Head>
         <title>{pokemon?.name}</title>
       </Head>
